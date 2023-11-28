@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from '../screens/HomeScreen';
+import DetailScreen from '../screens/DetailScreen';
 
-const index = () => {
-    return (
-        <View>
-            <Text>index</Text>
-        </View>
-    )
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator screenOptions={{headerShown:false}}> 
+      <Tab.Screen name="Home" component={HomeScreen}/>
+      <Tab.Screen name="Detail" component={DetailScreen}/>
+    </Tab.Navigator>
+  );
 }
 
-export default index
-
-const styles = StyleSheet.create({})
+export default MyTabs
