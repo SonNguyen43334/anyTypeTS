@@ -7,35 +7,38 @@ import {
   TouchableOpacity,
   View,
   ViewStyle,
-  TextStyle
+  TextStyle,
+  ImageStyle,
 } from 'react-native';
 import React from 'react';
 
 interface HeaderProps {
-  label: String;
+  label?: String;
   listIconLeft?: Array<LeftButtonProps>;
   labelStyle?: ViewStyle;
   style?: ViewStyle;
   listIconRight: Array<RightButtonProps>;
 }
 
-interface RightButtonProps {
+export interface RightButtonProps {
   type: 'icon' | 'text';
-  label: String;
+  label?: String;
   onPress: Function;
-  icon: String;
+  icon: ImageSourcePropType;
   disable: boolean;
+  labelStyle?: TextStyle;
+  iconStyle?: ImageStyle;
 }
 
 interface IconRightProps {
   data: Array<RightButtonProps>;
 }
-interface LeftButtonProps {
+export interface LeftButtonProps {
   type: 'icon' | 'text';
   label?: String;
   onPress: Function;
   icon?: ImageSourcePropType | undefined;
-  labelStyle? : TextStyle;
+  labelStyle?: TextStyle;
   disable?: boolean;
 }
 
@@ -57,7 +60,9 @@ const Header = ({
           <LeftIcon data={listIconLeft} />
         )}
         <Text style={styles.label}>{label}</Text>
-        <View style={{flex: 5}}></View>
+        {listIconRight && listIconRight.length > 0 && (
+          <RightIcon data={listIconRight} />
+        )}
       </View>
     </SafeAreaView>
   );
@@ -71,14 +76,14 @@ let LeftIcon = ({data}: IconLeftProps) => {
       <TouchableOpacity
         disabled={ele.disable}
         key={index}
-        style={{marginLeft: index !== 0 ? 10 : 0}}
+        style={{marginLeft: index !== 0 ? 5 : 0}}
         onPress={() => {
           ele.onPress();
         }}>
         {ele.type == 'text' ? (
           <Text style={ele.labelStyle}>{ele.label}</Text>
         ) : ele.icon ? (
-          <Image style={{width: 30, height: 30}} source={ele.icon} />
+          <Image style={{width: 40, height: 40}} source={ele.icon} />
         ) : (
           <View />
         )}
@@ -91,6 +96,41 @@ let LeftIcon = ({data}: IconLeftProps) => {
         flex: 5,
         flexDirection: 'row',
         alignItems: 'center',
+      }}>
+      {result}
+    </View>
+  );
+};
+
+let RightIcon = ({data}: IconRightProps) => {
+  let result = data.map((ele, index) => {
+    return (
+      <TouchableOpacity
+        disabled={ele.disable}
+        key={index}
+        style={{marginRight: 15}}
+        onPress={() => {
+          ele.onPress();
+        }}>
+        {ele.type == 'text' ? (
+          <Text style={[{width: 40, height: 40}, ele.labelStyle]}>
+            {ele.label}
+          </Text>
+        ) : ele.icon ? (
+          <Image style={ele.iconStyle} source={ele.icon} />
+        ) : (
+          <View />
+        )}
+      </TouchableOpacity>
+    );
+  });
+  return (
+    <View
+      style={{
+        flex: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent : 'flex-end'
       }}>
       {result}
     </View>
