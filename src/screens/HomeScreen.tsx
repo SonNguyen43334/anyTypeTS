@@ -17,7 +17,7 @@ const HomeScreen = () => {
       icon: require('../constants/images/ic_leaves.png'),
       type: 'icon',
       onPress: () => {
-        console.log('hunglong');
+        console.log('000000000');
       },
       disable: true,
     },
@@ -39,7 +39,7 @@ const HomeScreen = () => {
       icon: require('../constants/images/ic_noti.png'),
       type: 'icon',
       onPress: () => {
-        console.log('hunglong');
+        console.log('1111111');
       },
       iconStyle: {width: 20, height: 20},
       disable: false,
@@ -48,7 +48,7 @@ const HomeScreen = () => {
       icon: require('../constants/images/ic_menu.png'),
       type: 'icon',
       onPress: () => {
-        console.log('hunglong');
+        console.log('h22222222');
       },
       iconStyle: {width: 20, height: 20},
       disable: false,
@@ -114,7 +114,7 @@ const HomeScreen = () => {
       <Search
         label={'search'}
         onRightPress={() => {
-          console.log('hunglong');
+          console.log('sonnnn');
         }}
         iconLeft={require('../constants/images/ic_search.png')}
         iconRight={require('../constants/images/ic_qr.png')}

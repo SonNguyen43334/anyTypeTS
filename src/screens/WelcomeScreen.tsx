@@ -4,7 +4,7 @@ import Animated, {useSharedValue, withSpring} from 'react-native-reanimated';
 import {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
-const WelcomScreen = () => {
+const WelcomeScreen = () => {
   const navigation = useNavigation();
   const animation1 = useSharedValue(0);
   const animation2 = useSharedValue(0);
@@ -18,7 +18,7 @@ const WelcomScreen = () => {
       animation2.value = withSpring(animation2.value + 30);
     }, 300);
     setTimeout(() => {
-      navigation.navigate('Home');
+      navigation.navigate('HomeScreen');
     }, 2500);
   }, []);
 
@@ -38,7 +38,7 @@ const WelcomScreen = () => {
   );
 };
 
-export default WelcomScreen;
+export default WelcomeScreen;
 
 const styles = StyleSheet.create({
   title: {
